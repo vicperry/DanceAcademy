@@ -33,9 +33,9 @@ public abstract class Aula {
 	public String toString() {
 		
 		StringBuilder sb = new StringBuilder();
-		sb.append("Turno: " + turno + ";");
-		sb.append("Mensalidade: R$" + mensalidade);
-		sb.append("Professor: "+ nomeProfessor);
+		sb.append(turno + ";");
+		sb.append(mensalidade + ";");
+		sb.append(nomeProfessor + ";");
 		
 		return sb.toString();
 	}

@@ -59,9 +59,9 @@ public class HipHop extends Aula {
 
 	@Override
 	public String toString() {
-		return super.toString() + ";Nível Profissional: " + nivelProfissional
-				+ ";Modalidade Hip-Hop: " + modalidadeHipHop
-				+ ";Ao ar livre: " + aoArLivre;
+		return super.toString() + nivelProfissional + ";"
+				+ modalidadeHipHop + ";"
+				+ aoArLivre + ";";
 	}
 	
 	

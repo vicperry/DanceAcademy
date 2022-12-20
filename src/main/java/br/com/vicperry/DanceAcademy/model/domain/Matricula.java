@@ -13,6 +13,25 @@ public class Matricula {
 	public Matricula() {
 		dataMatricula = LocalDateTime.now();
 	}
+	
+	
+	
+	public Matricula(Aluno aluno, List<Aula> aulas) {
+		this.aluno = aluno;
+		this.aulas = aulas;
+		
+		dataMatricula = LocalDateTime.now();
+	}
+
+	public String obterLinha() {	
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("MM/yyyy");
+		
+		return this.getDataMatricula().format(formato)+";"+
+			this.getAluno()+";"+
+			this.getAulas()+";"+
+			this.getAulas().size()+"\r\n";
+	}
+
 	public String getMatricula() {
 		return matricula;
 	}

@@ -10,7 +10,6 @@ import br.com.vicperry.DanceAcademy.model.domain.Ballet;
 import br.com.vicperry.DanceAcademy.model.domain.HipHop;
 import br.com.vicperry.DanceAcademy.model.domain.Matricula;
 import br.com.vicperry.DanceAcademy.model.domain.Zumba;
-import br.com.vicperry.DanceAcademy.model.exceptions.MensalidadeZeroBalletException;
 
 public class MatriculaTest {
 

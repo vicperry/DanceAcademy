@@ -60,9 +60,9 @@ public class Ballet extends Aula {
 
 	@Override
 	public String toString() {
-		return super.toString() + ";Turma Avançada:" + turmaAvancada
-				+ ";Modalidade:" + modalidadeBallet
-				+ ";corCollant:" + corCollant;
+		return super.toString() + turmaAvancada + ";"
+				+ modalidadeBallet + ";"
+				+ corCollant + ";";
 	}
 
 }

@@ -1,0 +1,7 @@
+001;ativa;19/12/2022 21:14;max;09/04/2002;max@gmail.com;[]; 
+Total de aulas matriculadas: 0[]
+1;100.0;marina;true;neoclassico;rosa;
+2;100.0;lana;false;breaking;false;
+3;100.0;lorde;truetrue;false;
+12/2022;max;09/04/2002;max@gmail.com;[1;100.0;marina;true;neoclassico;rosa;, 2;100.0;lana;false;breaking;false;, 3;100.0;lorde;truetrue;false;];3
+

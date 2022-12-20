@@ -1,0 +1,4 @@
+M;max;2002;APRIL;9;0;0;max@gmail.com;001;true
+B;1;100;marina;true;neoclassico;rosa
+H;2;100;lana;false;breaking;false
+Z;3;100;lorde;true;true;false

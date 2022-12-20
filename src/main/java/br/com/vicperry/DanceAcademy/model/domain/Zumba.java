@@ -60,9 +60,9 @@ public class Zumba extends Aula {
 
 	@Override
 	public String toString() {
-		return super.toString() + ";Turma Unissex: " + turmaUnissex
-				 + ";Ao ar livre: " + aoArLivre
-				 + ";Sem impacto: " + semImpacto;
+		return super.toString() + turmaUnissex
+				 + aoArLivre + ";"
+				 + semImpacto + ";";
 	}
 	
 	

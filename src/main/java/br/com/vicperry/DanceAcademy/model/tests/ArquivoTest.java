@@ -5,14 +5,17 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.vicperry.DanceAcademy.model.domain.Aluno;
 import br.com.vicperry.DanceAcademy.model.domain.Aula;
+import br.com.vicperry.DanceAcademy.model.domain.Ballet;
+import br.com.vicperry.DanceAcademy.model.domain.HipHop;
 import br.com.vicperry.DanceAcademy.model.domain.Matricula;
-import br.edu.infnet.app.dominio.Administrativo;
-import br.edu.infnet.app.dominio.Estagiario;
-import br.edu.infnet.app.dominio.Programador;
+import br.com.vicperry.DanceAcademy.model.domain.Zumba;
 
 
 public class ArquivoTest {
@@ -20,89 +23,110 @@ public class ArquivoTest {
 	public static void main(String[] args) {
 		try {
 			try {
-				String dir = "c:/dev/";		
 				String arq = "matriculas.txt";
 				
-				FileReader file = new FileReader(dir+arq);
-				BufferedReader reader = new BufferedReader(file);
+				FileReader fileR = new FileReader(arq);
+				BufferedReader reader = new BufferedReader(fileR);
 				
-				FileWriter fileW = new FileWriter(dir+"out_" + arq);
+				FileWriter fileW = new FileWriter("out_" + arq);
 				BufferedWriter writer = new BufferedWriter(fileW);
 				
 				String linha = reader.readLine();
 				
 				String[] campos = null;
 				
-				int qtde = 0;
-				float valor = 0;
+				List<Aula> aulas = new ArrayList<Aula>();	
+				Matricula m = null;
 
 while(linha != null) {
 					
 					campos = linha.split(";");
 
 					switch (campos[0].toUpperCase()) {
-					case "A":
+					case "M":
+						try {
+						m = new Matricula(new Aluno(campos[1], LocalDateTime.of(
+								Integer.valueOf(campos[2]), 
+								Month.valueOf(campos[3]),
+								Integer.valueOf(campos[4]), 
+								Integer.valueOf(campos[5]), 
+								Integer.valueOf(campos[6])),
+								campos[7]), aulas);
+						m.setMatricula(campos[8]);
+						m.setAtivo(Boolean.valueOf(campos[9]));
 						
-						Administrativo a = new Administrativo();
-						a.setNome(campos[1]);
-						a.setIdade(Integer.valueOf(campos[2]));
-						a.setSalario(Float.valueOf(campos[3]));
-						a.setBonus(Float.valueOf(campos[4]));
-						a.setDesconto(Float.valueOf(campos[5]));
+						}catch(Exception e) {
+							e.printStackTrace();
+						}
+						
+						writer.write(m.toString() + m.getAulas().toString() + "\r\n");
 
-						escrita.write(a.obterStringSalarioPorFuncionario());
-						qtde++;
-						valor = valor + a.calcularSalarioLiquido();
+						break;
+						
+					case "B":
+						
+						Ballet b = new Ballet(Integer.valueOf(campos[1]),
+								Float.valueOf(campos[2]),
+								campos[3],
+								Boolean.valueOf(campos[4]), 
+								campos[5], 
+								campos[6]);
+						
+						aulas.add(b);
+						
+						writer.write(b.toString() + "\r\n");
 
 						break;
 
-					case "E":						
-						Estagiario e = new Estagiario();
-						e.setFaculdade(campos[4]);
-						e.setIdade(Integer.valueOf(campos[2]));
-						e.setNome(campos[1]);
-						e.setPeriodo(Integer.valueOf(campos[5]));
-						e.setSalario(Float.valueOf(campos[3]));
-
-						escrita.write(e.obterStringSalarioPorFuncionario());
-						qtde++;
-						valor = valor + e.calcularSalarioLiquido();
+					case "H":						
+						HipHop h = new HipHop(Integer.valueOf(campos[1]),
+								Float.valueOf(campos[2]),
+								campos[3],
+								Boolean.valueOf(campos[4]), 
+								campos[5], 
+								Boolean.valueOf(campos[6]));
+						
+						aulas.add(h);
+						
+						writer.write(h.toString() + "\r\n");
 
 						break;
 
-					case "P":						
-						Programador p = new Programador(campos[1], Integer.valueOf(campos[2]));
-						p.setDevFull(Boolean.valueOf(campos[5]));
-						p.setLinguagem(campos[4]);
-						p.setSalario(Float.valueOf(campos[3]));
-
-						escrita.write(p.obterStringSalarioPorFuncionario());
-						qtde++;
-						valor = valor + p.calcularSalarioLiquido();
+					case "Z":						
+						Zumba z = new Zumba(Integer.valueOf(campos[1]),
+								Float.valueOf(campos[2]),
+								campos[3],
+								Boolean.valueOf(campos[4]), 
+								Boolean.valueOf(campos[5]), 
+								Boolean.valueOf(campos[6]));
+						
+						aulas.add(z);
+						
+						writer.write(z.toString() + "\r\n");
 
 						break;
 						
 					default:
-						System.out.println("Funcion�rio ainda n�o definido [" + linha + "]");
+						System.out.println("Registro inválido [" + linha + "]");
 						break;
 					}
 
-					linha = leitura.readLine();
+					linha = reader.readLine();
 				}
 				
-				escrita.write(qtde+";"+valor+"\r\n");
+				writer.write(m.obterLinha() + "\r\n");
 								
-				leitura.close();
-				file.close();
+				reader.close();
+				fileR.close();
 				
-				escrita.close();
+				writer.close();
 				fileW.close();
 			} catch (IOException e) {
-				System.out.println("[ERROR] " + e.getMessage());
+				System.out.println("Erro: " + e.getMessage());
 			}
 
 		} finally {
-			System.out.println("Processamento realizado com sucesso!!!");
+			System.out.println("Processamento concluído com sucesso!");
 		}			
 	}
 
